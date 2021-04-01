@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Among Us
+Icon=/usr/share/icons/among_us_icon.png
+Exec=wine "/opt/AmongUs/Among Us.exe"
+Terminal=false
