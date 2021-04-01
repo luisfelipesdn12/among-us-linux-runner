@@ -1,12 +1,19 @@
 echo "Verifying if 'wine' is installed"
 if ! dpkg -s wine > /dev/null; then
-	echo "The command 'wine' was not found! Installing it"
-	if uname -m | grep '64' > /dev/null; then
-		echo "Installing 'wine' for a 64-bit system"
-		apt install wine64
+	echo "The command 'wine' was not found! Trying to install it"
+	echo "Verifying if 'apt' (package manager) is installed"
+	if dpkg -s apt > /dev/null; then
+		echo "The command 'apt' was found! Installing 'wine'"
+		if uname -m | grep '64' > /dev/null; then
+			echo "Installing 'wine' for a 64-bit system"
+			apt install wine64
+		else
+			echo "Installing 'wine' for a 32-bit system"
+			apt install wine32
+		fi
 	else
-		echo "Installing 'wine' for a 32-bit system"
-		apt install wine32
+		echo "The command 'apt' was not found!"
+		echo "You must install wine on https://www.winehq.org/ in order to run the script again"
 	fi
 else
 	echo "The command 'wine' was found! Proceeding"
